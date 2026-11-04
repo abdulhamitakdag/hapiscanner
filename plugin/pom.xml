@@ -5,7 +5,7 @@
 
   <groupId>tr.hapicraft</groupId>
   <artifactId>HapiVerify</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <name>HapiVerify</name>
   <packaging>jar</packaging>
 

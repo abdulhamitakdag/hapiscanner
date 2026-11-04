@@ -61,7 +61,7 @@ public final class Ayarlar {
                 Duration.ofSeconds(sayi(m.get("timeout_seconds"), 8, 1, 60)),
                 Duration.ofSeconds(sayi(m.get("poll_seconds"), 10, 3, 120)),
                 Duration.ofSeconds(sayi(m.get("session_snapshot_seconds"), 30, 5, 60)),
-                m.getOrDefault("download_url", "https://verify.hapicraft.com.tr/indir"));
+                m.getOrDefault("download_url", "https://hapicraft.com.tr/dogrula"));
     }
 
     private static long sayi(String deger, long varsayilan, long alt, long ust) {
@@ -92,7 +92,7 @@ public final class Ayarlar {
             "session_snapshot_seconds=30",
             "",
             "# Oyuncuya gosterilecek indirme adresi",
-            "download_url=https://verify.hapicraft.com.tr/indir",
+            "download_url=https://hapicraft.com.tr/dogrula",
             "");
 
     public static Ayarlar yukle(Path dizin) throws IOException {

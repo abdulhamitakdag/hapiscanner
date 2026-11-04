@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-@Plugin(id = "hapiverify", name = "HapiVerify", version = "0.1.1",
+@Plugin(id = "hapiverify", name = "HapiVerify", version = "0.1.2",
         description = "HapiCraft PC dogrulama - proxy tarafi",
         authors = {"HapiCraft"})
 public final class HapiVerifyEklentisi {

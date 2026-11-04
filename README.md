@@ -6,7 +6,7 @@ HapiScanner, HapiCraft Minecraft sunucusu için geliştirilen bir **PC doğrulam
 
 Oyuncular için tek gereken dosya `HapiScanner.exe`:
 
-**[→ Son sürümü indir](https://github.com/abdulhamitakdag/hapiscanner/releases/latest)** · [adım adım anlatım](https://verify.hapicraft.com.tr/indir)
+**[→ Son sürümü indir](https://github.com/abdulhamitakdag/hapiscanner/releases/latest)** · [adım adım anlatım](https://hapicraft.com.tr/dogrula)
 
 Açılan sayfadaki **Assets** listesinden yalnızca `HapiScanner.exe`'yi indirin. Kurulum yoktur, dosyaya çift tıklamanız yeterlidir (Windows 10/11, 64 bit). Kaynak kodu indirmeniz (`Source code (zip)`) gerekmez; `HapiVerify-*.jar` yalnızca sunucu yöneticileri içindir.
 
