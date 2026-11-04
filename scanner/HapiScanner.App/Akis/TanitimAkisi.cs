@@ -8,7 +8,7 @@ public sealed class TanitimAkisi : ITaramaAkisi
 {
     private static readonly (Asama Asama, int Sure, string[] Notlar)[] Senaryo =
     {
-        (Asama.Hazirlik, 600, new[] { "scanner sürümü 0.1.4", "cihaz anahtarı hazır" }),
+        (Asama.Hazirlik, 600, new[] { "scanner sürümü 0.1.5", "cihaz anahtarı hazır" }),
         (Asama.KuralPaketi, 900, new[] { "kural paketi imzası doğrulandı", "sürüm 2026.11.03.1" }),
         (Asama.Baglanti, 1100, new[] { "Minecraft process'i bulundu", "HapiCraft bağlantısı doğrulandı" }),
         (Asama.DosyaSistemi, 2600, new[]
