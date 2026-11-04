@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="HapiScanner.App.Ekranlar.HataEkrani"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m3b="clr-namespace:HapiScanner.App.Model3B">
+
+    <Grid Margin="48,40,40,40">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" MaxWidth="430"
+                    HorizontalAlignment="Left">
+            <Border Width="56" Height="56" CornerRadius="12" HorizontalAlignment="Left"
+                    Background="{StaticResource PanelAcik}">
+                <Image Source="{StaticResource IkonUyari}" Width="30" Height="30"
+                       Style="{StaticResource PixelGorsel}" />
+            </Border>
+
+            <TextBlock Style="{StaticResource BaslikBuyuk}" FontSize="25" Margin="0,18,0,0"
+                       Text="Tarama tamamlanamadı" />
+            <TextBlock Style="{StaticResource Govde}" Margin="0,12,0,0"
+                       Text="{Binding HataMesaji}" />
+            <TextBlock Style="{StaticResource Kucuk}" Margin="0,12,0,0"
+                       Text="Sorun devam ederse yetkiliden yeni bir doğrulama kodu iste." />
+
+            <StackPanel Orientation="Horizontal" Margin="0,26,0,0">
+                <Button Style="{StaticResource ButonBirincil}" Click="TekrarDene"
+                        Content="Tekrar dene" />
+                <Button Style="{StaticResource ButonSessiz}" Margin="8,0,0,0"
+                        Click="Kapat" Content="Kapat" />
+            </StackPanel>
+        </StackPanel>
+
+        <m3b:Karakter3B Grid.Column="1" AktifEkran="Hata" Opacity="0.85"
+                        Width="260" Height="300"
+                        VerticalAlignment="Center" Margin="20,0,10,0" />
+    </Grid>
+</UserControl>

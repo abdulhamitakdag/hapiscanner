@@ -1,0 +1,147 @@
+﻿<Window x:Class="HapiScanner.App.AnaPencere"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ekranlar="clr-namespace:HapiScanner.App.Ekranlar"
+        Title="HapiScanner" Height="680" Width="1020"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="{StaticResource Zemin}"
+        Icon="Varliklar/hapiscanner.ico"
+        ResizeMode="CanMinimize" UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <Border Background="{StaticResource Zemin}"
+            BorderBrush="{StaticResource Cizgi}" BorderThickness="1"
+            CornerRadius="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- ====================== Pencere basligi ====================== -->
+            <Grid Grid.Row="0" Background="Transparent" MouseLeftButtonDown="BaslikSurukle">
+                <StackPanel Orientation="Horizontal" Margin="18,0,0,0"
+                            VerticalAlignment="Center">
+                    <Image Source="{StaticResource LogoKucuk}" Width="22" Height="22"
+                           Style="{StaticResource PixelGorsel}" />
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="13"
+                               FontFamily="{StaticResource Yazi}" FontWeight="SemiBold">
+                        <Run Text="Hapi" Foreground="{StaticResource MarkaYesil}" />
+                        <Run Text="Scanner" Foreground="{StaticResource Metin}" />
+                    </TextBlock>
+                    <Border Margin="12,0,0,0" Padding="7,2" CornerRadius="4"
+                            Background="{StaticResource PanelAcik}" VerticalAlignment="Center">
+                        <TextBlock Text="v0.1.0" Style="{StaticResource Etiket}" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            Margin="0,0,10,0" VerticalAlignment="Center">
+                    <Button Style="{StaticResource ButonBaslikCubugu}" Content="—"
+                            Click="Kucult" ToolTip="Simge durumuna küçült" />
+                    <Button Style="{StaticResource ButonBaslikCubugu}" Content="✕"
+                            Click="Kapat" ToolTip="Kapat" />
+                </StackPanel>
+            </Grid>
+
+            <!-- ====================== Tanitim modu seridi ================== -->
+            <Border Grid.Row="1" Background="#332E82D6" Padding="18,8"
+                    Visibility="{Binding TanitimModu, RelativeSource={RelativeSource AncestorType=Window},
+                                 Converter={StaticResource BoolGorunurluk}}">
+                <TextBlock Style="{StaticResource Kucuk}" Foreground="{StaticResource Bilgi}"
+                           Text="TANITIM MODU — bu pencerede gerçek tarama yapılmıyor, hiçbir veri gönderilmiyor." />
+            </Border>
+
+            <!-- ====================== Govde ================================ -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="296" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Sol ray -->
+                <Grid Grid.Column="0">
+                    <Border Background="{StaticResource ZeminRaf}" CornerRadius="0,0,0,13" />
+                    <Rectangle Opacity="0.18" RadiusX="0" RadiusY="0">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="{StaticResource ArkaplanDoku}"
+                                        TileMode="Tile" Stretch="None"
+                                        Viewport="0,0,160,160" ViewportUnits="Absolute" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Border BorderBrush="{StaticResource Cizgi}" BorderThickness="0,0,1,0" />
+
+                    <DockPanel Margin="26,26,26,22">
+                        <StackPanel DockPanel.Dock="Top">
+                            <Image Source="{StaticResource Logo}" Width="92" Height="92"
+                                   HorizontalAlignment="Left" />
+                            <TextBlock Margin="0,16,0,0" FontSize="21" FontWeight="Bold"
+                                       FontFamily="{StaticResource Yazi}">
+                                <Run Text="Hapi" Foreground="{StaticResource MarkaYesil}" />
+                                <Run Text="Scanner" Foreground="{StaticResource Metin}" />
+                            </TextBlock>
+                            <TextBlock Margin="0,4,0,0" Style="{StaticResource Kucuk}"
+                                       Text="HapiCraft PC doğrulama aracı" />
+
+                            <Border Height="1" Background="{StaticResource Cizgi}" Margin="0,22,0,22" />
+
+                            <TextBlock Style="{StaticResource Etiket}" Text="ADIMLAR" Margin="0,0,0,14" />
+                        </StackPanel>
+
+                        <!-- Alt bilgi -->
+                        <StackPanel DockPanel.Dock="Bottom">
+                            <Border Height="1" Background="{StaticResource Cizgi}" Margin="0,0,0,16" />
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{StaticResource IkonKilit}" Width="18" Height="18"
+                                       Style="{StaticResource PixelGorsel}" VerticalAlignment="Top" />
+                                <TextBlock Margin="10,0,0,0" Style="{StaticResource Kucuk}" Width="196"
+                                           Text="Analiz bilgisayarında yapılır. Sunucuya dosya değil, kural sonucu gider." />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                                <Image Source="{StaticResource IkonKalkan}" Width="18" Height="18"
+                                       Style="{StaticResource PixelGorsel}" VerticalAlignment="Top" />
+                                <TextBlock Margin="10,0,0,0" Style="{StaticResource Kucuk}" Width="196"
+                                           Text="Açık kaynak · Apache-2.0 · kodun tamamı denetlenebilir." />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Adim listesi -->
+                        <StackPanel VerticalAlignment="Top">
+                            <ContentControl Tag="Gizlilik" Style="{StaticResource Adim}"
+                                            Content="Gizlilik onayı" />
+                            <ContentControl Tag="Kod" Style="{StaticResource Adim}"
+                                            Content="Doğrulama kodu" />
+                            <ContentControl Tag="Tarama" Style="{StaticResource Adim}"
+                                            Content="Tarama" />
+                            <ContentControl Tag="Sonuc" Style="{StaticResource Adim}"
+                                            Content="Sonuç" />
+                        </StackPanel>
+                    </DockPanel>
+                </Grid>
+
+                <!-- Icerik -->
+                <Grid Grid.Column="1" Margin="0">
+                    <ekranlar:KarsilamaEkrani
+                        Visibility="{Binding AktifEkran, Converter={StaticResource EkranGorunurlugu},
+                                     ConverterParameter=Karsilama}" />
+                    <ekranlar:GizlilikEkrani
+                        Visibility="{Binding AktifEkran, Converter={StaticResource EkranGorunurlugu},
+                                     ConverterParameter=Gizlilik}" />
+                    <ekranlar:KodEkrani
+                        Visibility="{Binding AktifEkran, Converter={StaticResource EkranGorunurlugu},
+                                     ConverterParameter=Kod}" />
+                    <ekranlar:TaramaEkrani
+                        Visibility="{Binding AktifEkran, Converter={StaticResource EkranlardanBiri},
+                                     ConverterParameter=Tarama|Baglaniyor}" />
+                    <ekranlar:SonucEkrani
+                        Visibility="{Binding AktifEkran, Converter={StaticResource EkranGorunurlugu},
+                                     ConverterParameter=Sonuc}" />
+                    <ekranlar:HataEkrani
+                        Visibility="{Binding AktifEkran, Converter={StaticResource EkranGorunurlugu},
+                                     ConverterParameter=Hata}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

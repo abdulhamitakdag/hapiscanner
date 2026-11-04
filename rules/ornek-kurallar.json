@@ -1,0 +1,60 @@
+{
+  "_not": "Bu dosya KURAL BICIMINI gosteren ornektir, gercek tespit kurali icermez. Gercek kural paketi ayri dagitilir ve imzalidir (bkz DETECTION_MODEL bolum 7). Buradaki degerler kasten uydurma yer tutuculardir.",
+  "ruleset_version": "2026.11.03.1",
+  "rules": [
+    {
+      "rule_id": "EXAMPLE_0001",
+      "name": "OrnekIstemci",
+      "category": "KNOWN_CLIENT",
+      "severity": "HIGH",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "SHA256",
+          "values": ["0000000000000000000000000000000000000000000000000000000000000000"]
+        },
+        {
+          "type": "PACKAGE_NAME",
+          "values": ["ornek.istemci.hile"]
+        },
+        {
+          "type": "MANIFEST_MARKER",
+          "key": "Implementation-Title",
+          "values": ["OrnekIstemci"]
+        }
+      ]
+    },
+    {
+      "rule_id": "EXAMPLE_0002",
+      "name": "JavaAgentEnjeksiyonu",
+      "category": "INJECTION",
+      "severity": "MEDIUM",
+      "min_indicators": 2,
+      "indicators": [
+        { "type": "STRUCTURAL_MARKER", "values": ["JAVA_AGENT"] },
+        { "type": "STRUCTURAL_MARKER", "values": ["EMBEDDED_NATIVE"] },
+        { "type": "STRUCTURAL_MARKER", "values": ["EXTENSION_MISMATCH"] }
+      ]
+    },
+    {
+      "rule_id": "EXAMPLE_0003",
+      "name": "YalnizDosyaAdiEslesmesi",
+      "category": "WEAK_SIGNAL",
+      "severity": "LOW",
+      "min_indicators": 1,
+      "indicators": [
+        { "type": "FILENAME", "values": ["ornekhile"] }
+      ]
+    }
+  ],
+  "allowlist": [
+    {
+      "type": "MOD_METADATA",
+      "values": ["sodium", "iris", "lithium", "fabric-api", "optifine", "journeymap"]
+    },
+    {
+      "type": "PACKAGE_NAME",
+      "values": ["net.fabricmc.api", "net.minecraftforge.fml"]
+    }
+  ]
+}

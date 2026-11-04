@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>tr.hapicraft</groupId>
+  <artifactId>HapiVerify</artifactId>
+  <version>0.1.0</version>
+  <name>HapiVerify</name>
+  <packaging>jar</packaging>
+
+  <properties>
+    <java.version>25</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <!--
+      Resmi, yayinlanmis Velocity API. Onceden yerel depodaki proxy jar'i
+      (local.velocity:velocity-proxy) kullaniliyordu; o artifact yalnizca bu
+      makinenin ~/.m2'sinde vardi, dolayisiyla derleme BASKA hicbir yerde -
+      ozellikle GitHub Actions'ta - tekrarlanamiyordu ve Release is akisi
+      "Could not find artifact local.velocity:velocity-proxy" ile duser.
+      Depo public; derlemenin herkeste ayni sonucu vermesi sart.
+      4.1.0, uzerinde calistigi proxy (4.2.1-SNAPSHOT) ile uyumlu.
+    -->
+    <dependency>
+      <groupId>com.velocitypowered</groupId>
+      <artifactId>velocity-api</artifactId>
+      <version>4.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>HapiVerify-${project.version}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <!-- JDK 23'ten itibaren annotation processing varsayilan olarak
+               KAPALI. Velocity'nin islemcisi velocity-plugin.json dosyasini
+               uretir; acik birakilmazsa jar sessizce eklenti olmadan cikar
+               ve proxy onu hic gormez. -->
+          <compilerArgs>
+            <arg>-proc:full</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <!-- Test siniflari Turkce adlandiriliyor (XTesti); varsayilan
+               desen (*Test) bunlari bulamaz ve testler SESSIZCE atlanir. -->
+          <includes>
+            <include>**/*Testi.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

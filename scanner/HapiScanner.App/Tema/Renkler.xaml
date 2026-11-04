@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        HapiCraft marka renkleri: yesil + beyaz. Turuncu/altin marka disidir ve
+        yalnizca uyari tonu olarak, vurgu amaciyla degil kullanilir.
+    -->
+
+    <Color x:Key="MarkaYesilRenk">#FF3FBF5F</Color>
+    <Color x:Key="MarkaYesilKoyuRenk">#FF2A8F46</Color>
+    <Color x:Key="ZeminRenk">#FF0E1317</Color>
+
+    <SolidColorBrush x:Key="MarkaYesil" Color="{StaticResource MarkaYesilRenk}" />
+    <SolidColorBrush x:Key="MarkaYesilKoyu" Color="{StaticResource MarkaYesilKoyuRenk}" />
+    <SolidColorBrush x:Key="MarkaYesilSolgun" Color="#2E3FBF5F" />
+
+    <SolidColorBrush x:Key="Zemin" Color="{StaticResource ZeminRenk}" />
+    <SolidColorBrush x:Key="ZeminRaf" Color="#FF0A0E11" />
+    <SolidColorBrush x:Key="Panel" Color="#FF151C21" />
+    <SolidColorBrush x:Key="PanelAcik" Color="#FF1B242A" />
+    <SolidColorBrush x:Key="Cizgi" Color="#FF25313A" />
+
+    <SolidColorBrush x:Key="Metin" Color="#FFE8EEEA" />
+    <SolidColorBrush x:Key="MetinIkincil" Color="#FFA8B6AF" />
+    <SolidColorBrush x:Key="MetinSolgun" Color="#FF72837B" />
+
+    <SolidColorBrush x:Key="Uyari" Color="#FFE0A93C" />
+    <SolidColorBrush x:Key="Kotu" Color="#FFD9544F" />
+    <SolidColorBrush x:Key="Bilgi" Color="#FF4AA2D6" />
+
+    <!--
+        Gorseller. Karakter artik tek parca PNG degil: 3B model skin
+        dokusundan calisma zamaninda kuruluyor (Model3B/Karakter3B).
+    -->
+    <BitmapImage x:Key="Logo" UriSource="pack://application:,,,/Varliklar/logo_hapicraft.png" />
+    <BitmapImage x:Key="LogoKucuk" UriSource="pack://application:,,,/Varliklar/logo_hapicraft_kucuk.png" />
+    <BitmapImage x:Key="IkonKalkan" UriSource="pack://application:,,,/Varliklar/ikon_kalkan.png" />
+    <BitmapImage x:Key="IkonBuyutec" UriSource="pack://application:,,,/Varliklar/ikon_buyutec.png" />
+    <BitmapImage x:Key="IkonKilit" UriSource="pack://application:,,,/Varliklar/ikon_kilit.png" />
+    <BitmapImage x:Key="IkonOnay" UriSource="pack://application:,,,/Varliklar/ikon_onay.png" />
+    <BitmapImage x:Key="IkonUyari" UriSource="pack://application:,,,/Varliklar/ikon_uyari.png" />
+    <BitmapImage x:Key="IkonDosya" UriSource="pack://application:,,,/Varliklar/ikon_dosya.png" />
+    <BitmapImage x:Key="IkonSunucu" UriSource="pack://application:,,,/Varliklar/ikon_sunucu.png" />
+    <BitmapImage x:Key="ArkaplanDoku" UriSource="pack://application:,,,/Varliklar/arkaplan_doku.png" />
+
+    <!-- Pixel-art gorseller bulaniklasmasin -->
+    <Style x:Key="PixelGorsel" TargetType="Image">
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+    </Style>
+
+</ResourceDictionary>

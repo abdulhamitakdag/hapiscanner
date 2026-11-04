@@ -1,0 +1,138 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scanner:
+    name: Scanner (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Testler
+        shell: pwsh
+        run: |
+          dotnet test scanner/HapiScanner.sln -c Release 2>&1 | Tee-Object -FilePath test.log
+          $kod = $LASTEXITCODE
+          if ($kod -ne 0) {
+            Select-String -Path test.log -Pattern '^\s*(Failed|Hata)' -AllMatches |
+              ForEach-Object { Write-Host "::error::$($_.Line.Trim())" }
+          }
+          exit $kod
+
+      - name: Yayin derlemesi
+        run: >
+          dotnet publish scanner/HapiScanner.App/HapiScanner.App.csproj
+          -c Release -r win-x64 --self-contained true
+          -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+          -o yayin
+
+      - name: Checksum
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem yayin/HapiScanner.exe
+          $hash = (Get-FileHash $exe.FullName -Algorithm SHA256).Hash.ToLower()
+          "$hash  HapiScanner.exe" | Out-File -Encoding ascii yayin/HapiScanner.exe.sha256
+          Write-Host "SHA256: $hash"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hapiscanner-win-x64
+          path: |
+            yayin/HapiScanner.exe
+            yayin/HapiScanner.exe.sha256
+
+  plugin:
+    name: Velocity eklentisi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: temurin
+          cache: maven
+
+      - name: Derle
+        run: mvn -B -f plugin/pom.xml clean verify
+
+      - name: Checksum
+        run: |
+          jar=$(ls plugin/target/HapiVerify-*.jar | head -1)
+          sha256sum "$jar" | sed "s| .*/| |" > "$jar.sha256"
+          cat "$jar.sha256"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hapiverify-plugin
+          path: |
+            plugin/target/HapiVerify-*.jar
+            plugin/target/HapiVerify-*.jar.sha256
+
+  yayin:
+    name: GitHub Release
+    needs: [scanner, plugin]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifactlar
+
+      - name: Release olustur
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: false
+          name: HapiScanner ${{ github.ref_name }}
+          files: artifactlar/**/*
+          body: |
+            ## Oyuncular için: ne indireceğim?
+
+            Aşağıdaki **Assets** listesinden yalnızca **`HapiScanner.exe`**
+            dosyasını indirin. Başka bir dosyaya ihtiyacınız yok.
+
+            - Kurulum yoktur: indirdiğiniz dosyaya çift tıklayın, açılır.
+            - Windows 10 / 11, 64 bit gerekir.
+            - Oyunda `/pcverify` yazıp aldığınız kodu programa girin.
+
+            Windows ilk açılışta "bilgisayarınızı korudu" (SmartScreen) uyarısı
+            gösterebilir. Bu, dosyanın virüslü olduğu anlamına gelmez; programın
+            ücretli bir kod imzalama sertifikası olmadığı için çıkar.
+            **Daha fazla bilgi → Yine de çalıştır** ile devam edebilirsiniz.
+
+            Adım adım anlatım: <https://verify.hapicraft.com.tr/indir>
+
+            ### Doğru dosyayı indirdiğinizden emin olmak için
+
+            `HapiScanner.exe.sha256` dosyası, exe'nin özetini içerir.
+            PowerShell'de:
+
+            ```
+            Get-FileHash .\HapiScanner.exe -Algorithm SHA256
+            ```
+
+            Çıkan değer `.sha256` dosyasındakiyle aynı olmalı. Farklıysa dosya
+            değiştirilmiş demektir, çalıştırmayın.
+
+            ### Diğer dosyalar
+
+            | Dosya | Kime gerekli |
+            |---|---|
+            | `HapiScanner.exe` | **Oyuncular** — indirip çalıştıracağınız dosya |
+            | `HapiScanner.exe.sha256` | Dosyayı doğrulamak isteyenler |
+            | `HapiVerify-*.jar` | Yalnızca sunucu yöneticileri (Velocity eklentisi) |
+
+            Bu sürümün dosyaları GitHub Actions üzerinde, bu depodaki kaynaktan
+            üretildi; kimsenin kendi bilgisayarında derleyip yüklediği bir dosya
+            değildir. Scanner'ın ne topladığı ve ne toplamadığı: `docs/PRIVACY.md`.

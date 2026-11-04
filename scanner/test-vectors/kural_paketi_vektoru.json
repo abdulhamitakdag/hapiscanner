@@ -1,0 +1,9 @@
+{
+  "_not": "Yayinci (Python, tools/kural_imzala.py) imzalar, scanner (C#) dogrular. Iki taraftan biri imza kuralini degistirirse test kirilir.",
+  "algorithm": "ECDSA P-256 + SHA-256 (DER), imza metni: ruleset|package_sha256=..|ruleset_version=..",
+  "publisher_public_key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEjxCMSZ4h6U62g0tKcCWNb1hPPiFvp5ckeODs+g24YjnMzqQuny+JaBJbZIFxSTTGDo9YHbtVkmYYbw61ubo+/A==",
+  "ruleset_version": "2026.11.03.1",
+  "package_sha256": "58135534fa1d7744e8c5f1804562853a84ea293ce826bb3b4dd71aecd7a51b60",
+  "signature": "MEYCIQC2RLVQooNVEgLhK5RD0yFQiFPLiQsDWnxM43GNPtacxwIhAKblOQ0AgVSlUudZNPV/cq/FIW0LwhXoY9v7OTB101xQ",
+  "package_json": "{\n  \"_not\": \"Capraz dil test vektoru. Gercek tespit kurali icermez.\",\n  \"ruleset_version\": \"2026.11.03.1\",\n  \"rules\": [\n    {\n      \"rule_id\": \"VECTOR_0001\",\n      \"name\": \"VektorKurali\",\n      \"category\": \"KNOWN_CLIENT\",\n      \"severity\": \"HIGH\",\n      \"min_indicators\": 2,\n      \"indicators\": [\n        {\n          \"type\": \"SHA256\",\n          \"values\": [\n            \"0000000000000000000000000000000000000000000000000000000000000000\"\n          ]\n        },\n        {\n          \"type\": \"PACKAGE_NAME\",\n          \"values\": [\n            \"ornek.istemci.hile\"\n          ]\n        },\n        {\n          \"type\": \"USN_EVENT\",\n          \"values\": [\n            \"USN_DELETE\"\n          ]\n        }\n      ]\n    }\n  ]\n}"
+}

@@ -1,0 +1,21 @@
+{
+  "note": "C# tarafindan uretildi, Python backend dogrular. Elle duzenlemeyin.",
+  "scanner_version": "0.1.0",
+  "algorithm": "ECDSA P-256 / SHA-256 / DER",
+  "public_key": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEGGpdr0y2lIqKMJkJRrnqgBeYkufEEYAj6uGojw6Np9RbU5kOracbp9Mgar/N\u002B4jJN\u002BKQf9T4Vc9IahOhWKFHEA==",
+  "fingerprint": "4ef396031aadf0f280b75c1586d78530",
+  "report_body": "{\u0022kanit\u0022:[]}",
+  "report_hash": "1e907e7d41b31404cdf93cf1f3606bdcbb5e5cea3e7c8b31764e230dfa7e7278",
+  "cases": [
+    {
+      "name": "heartbeat",
+      "payload": "heartbeat|nonce=a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90|sequence=1|stage=filesystem|timestamp=2026-11-03T12:00:00.000000\u002B00:00|verification_id=7f3a9c1e-0000-4000-8000-000000000001",
+      "signature": "MEQCIAqzryMSTCsZjw/on6KI4EtLoAwk4Tucn3xyKOAK9l6GAiA\u002BHMm7vNa8C51Qc2jLbMY0rSkOtSRC4MRuBQktJDfIkg=="
+    },
+    {
+      "name": "report",
+      "payload": "report|nonce=0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0|report_hash=1e907e7d41b31404cdf93cf1f3606bdcbb5e5cea3e7c8b31764e230dfa7e7278|ruleset_version=2026.11.03.1|scanner_version=0.1.0|timestamp=2026-11-03T12:00:05.000000\u002B00:00|verification_id=7f3a9c1e-0000-4000-8000-000000000001",
+      "signature": "MEUCIH\u002BL1/ZP2x1ur1QSM1zYG8C1BrgNMM6Pht2TVv22/NwFAiEA3c3PRXo72Gt2Jsib9gPr6X2\u002BYz3lLDsX8FTx4laLp8k="
+    }
+  ]
+}

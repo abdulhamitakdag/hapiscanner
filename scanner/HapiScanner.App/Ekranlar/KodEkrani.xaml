@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="HapiScanner.App.Ekranlar.KodEkrani"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:arayuz="clr-namespace:HapiScanner.Core.Arayuz;assembly=HapiScanner.Core"
+             xmlns:m3b="clr-namespace:HapiScanner.App.Model3B">
+
+    <Grid Margin="48,40,40,40">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" MaxWidth="420"
+                    HorizontalAlignment="Left">
+            <TextBlock Style="{StaticResource Etiket}" Text="ADIM 2 / 4" />
+            <TextBlock Style="{StaticResource BaslikBuyuk}" FontSize="26" Margin="0,10,0,0"
+                       Text="{x:Static arayuz:Metinler.KodBaslik}" />
+            <TextBlock Style="{StaticResource Govde}" Margin="0,12,0,0"
+                       Text="{x:Static arayuz:Metinler.KodAciklama}" />
+
+            <TextBox x:Name="KodKutusuAlani" Style="{StaticResource KodKutusu}" Margin="0,22,0,0"
+                     Text="{Binding Kod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                     CharacterCasing="Upper" KeyDown="KodaBasildi" />
+
+            <TextBlock Style="{StaticResource Kucuk}" Margin="2,8,0,0"
+                       Text="{x:Static arayuz:Metinler.KodIpucu}" />
+
+            <TextBlock Style="{StaticResource Kucuk}" Margin="2,6,0,0"
+                       Foreground="{StaticResource Kotu}" Text="{Binding KodHatasi}"
+                       Visibility="{Binding KodHatasi, Converter={StaticResource DoluysaGorunur}}" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,22,0,0">
+                <Button Style="{StaticResource ButonBirincil}" Click="Baglan"
+                        IsEnabled="{Binding BaglanilabilirMi}"
+                        Content="{x:Static arayuz:Metinler.BaglanButon}" />
+                <Button Style="{StaticResource ButonSessiz}" Margin="8,0,0,0"
+                        Click="Geri" Content="Geri" />
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Column="1" VerticalAlignment="Center" Margin="20,0,10,0">
+            <Border Width="280" Height="280" CornerRadius="140" Opacity="0.08"
+                    Background="{StaticResource MarkaYesil}" />
+            <m3b:Karakter3B AktifEkran="Kod" Width="280" Height="320" />
+        </Grid>
+    </Grid>
+</UserControl>

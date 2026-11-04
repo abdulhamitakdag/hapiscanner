@@ -1,0 +1,15 @@
+﻿<Application x:Class="HapiScanner.App.Uygulama"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="AnaPencere.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Tema/Renkler.xaml" />
+                <ResourceDictionary Source="Tema/Donusturucular.xaml" />
+                <ResourceDictionary Source="Tema/Stiller.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

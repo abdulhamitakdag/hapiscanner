@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>HapiScanner indirme — HapiCraft PC doğrulaması</title>
+<style>
+  :root {
+    --arka: #11131a;
+    --kart: #191c26;
+    --cizgi: #2a2f3d;
+    --metin: #e6e8ef;
+    --soluk: #9aa1b4;
+    --vurgu: #f0a528;
+    --uyari: #3a2a14;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--arka);
+    color: var(--metin);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+  h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 8px; }
+  h2 { font-size: 1.2rem; margin: 36px 0 10px; }
+  .alt { color: var(--soluk); margin: 0 0 32px; }
+  a { color: var(--vurgu); }
+  .kart {
+    background: var(--kart);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin: 22px 0;
+  }
+  .indir {
+    display: inline-block;
+    background: var(--vurgu);
+    color: #1a1204;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 8px;
+  }
+  .indir:hover { filter: brightness(1.08); }
+  .not { color: var(--soluk); font-size: 0.9rem; margin-top: 12px; }
+  .uyari { background: var(--uyari); border-color: #5a4318; }
+  code {
+    background: #0d0f15;
+    border: 1px solid var(--cizgi);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.9em;
+  }
+  pre {
+    background: #0d0f15;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    padding: 14px;
+    overflow-x: auto;
+  }
+  pre code { background: none; border: 0; padding: 0; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  footer {
+    margin-top: 48px;
+    padding-top: 18px;
+    border-top: 1px solid var(--cizgi);
+    color: var(--soluk);
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>HapiScanner</h1>
+  <p class="alt">HapiCraft PC doğrulaması için kullanılan tarama programı.</p>
+
+  <div class="kart">
+    <a class="indir" href="https://github.com/abdulhamitakdag/hapiscanner/releases/latest">Windows için indir</a>
+    <p class="not">
+      Dosya GitHub sürüm sayfasından iner: <code>HapiScanner.exe</code> ve
+      yanındaki <code>HapiScanner.exe.sha256</code>. Yalnızca Windows 10/11 (64 bit).
+      Kurulum gerekmez, indirdiğin dosyayı çift tıklaman yeterli.
+    </p>
+  </div>
+
+  <h2>Bu program ne yapar?</h2>
+  <p>
+    Bilgisayarında hile programı kullanıldığına dair iz olup olmadığını arar ve sonucu
+    HapiCraft'a bir rapor olarak gönderir. Taramayı <strong>sen başlatırsın</strong>:
+    oyun içinde <code>/pcverify</code> yazdığında sana özel bir kod verilir, programı
+    açıp o kodu girersin. Kod olmadan hiçbir şey taranmaz, hiçbir şey gönderilmez.
+  </p>
+  <ul>
+    <li>Tarama senin onayınla başlar, istediğin an iptal edebilirsin.</li>
+    <li>Program bilgisayarında kalıcı olarak çalışmaz; kapatınca biter, arka planda bir servis bırakmaz.</li>
+    <li>Kişisel dosyaların, şifrelerin, sohbetlerin ve tarayıcı geçmişin okunmaz ve gönderilmez.</li>
+    <li>Gönderilen rapor, bulunan izlerin listesi ve tarama kapsamından oluşur. Raporun ne içerdiği
+      <a href="https://github.com/abdulhamitakdag/hapiscanner">kaynak kodunda</a> açıkça yazılıdır.</li>
+  </ul>
+  <p>
+    Program <strong>ceza vermez</strong> ve otomatik karar üretmez. Sonucu bir yetkili inceler,
+    kararı insan verir.
+  </p>
+
+  <h2>Nasıl kullanılır?</h2>
+  <ol>
+    <li>Oyunda <code>/pcverify</code> yaz. Sana özel mesajla bir kod gelir.</li>
+    <li>İndirdiğin <code>HapiScanner.exe</code> dosyasını çalıştır.</li>
+    <li>Kodu gir, ne taranacağını okuyup onayla.</li>
+    <li>Tarama bitince sonuç sunucuya gider; oyunda bilgilendirilirsin.</li>
+  </ol>
+  <p class="not">
+    Kod kısa süre geçerlidir. Süresi dolarsa oyunda tekrar <code>/pcverify</code> yazıp yeni kod alabilirsin.
+  </p>
+
+  <div class="kart uyari">
+    <h2 style="margin-top:0">"Windows bilgisayarınızı korudu" uyarısı</h2>
+    <p>
+      Program ücretli bir kod imzalama sertifikasıyla imzalanmadığı için Windows ilk
+      çalıştırmada mavi bir SmartScreen ekranı gösterebilir. Bu, dosyanın virüslü olduğu
+      anlamına gelmez; Windows'un "bu dosyayı daha önce çok az kişi çalıştırdı" demesidir.
+    </p>
+    <p style="margin-bottom:0">
+      Devam etmek için: <strong>Daha fazla bilgi</strong> → <strong>Yine de çalıştır</strong>.
+      Emin olmak istiyorsan aşağıdaki özet kontrolünü yap — dosyanın bizim yayınladığımız
+      dosya olduğunu kendin doğrulayabilirsin.
+    </p>
+  </div>
+
+  <h2>Dosyanın doğruluğunu kontrol et</h2>
+  <p>
+    Her sürümün yanında bir <code>.sha256</code> dosyası yayınlanır. İndirdiğin dosyanın
+    özeti bu değerle aynı değilse dosya <strong>değiştirilmiş demektir, çalıştırma</strong>.
+    Windows'ta PowerShell açıp:
+  </p>
+  <pre><code>Get-FileHash .\HapiScanner.exe -Algorithm SHA256</code></pre>
+  <p>
+    Çıkan <code>Hash</code> değerini <code>HapiScanner.exe.sha256</code> dosyasının içindekiyle
+    karşılaştır (büyük/küçük harf farkı önemsiz).
+  </p>
+
+  <h2>Verilerim ne kadar saklanıyor?</h2>
+  <ul>
+    <li>Tam rapor (kanıt satırlarıyla): <strong>30 gün</strong>.</li>
+    <li>Sonra yalnızca özet (sonuç, kapsam, tarih): <strong>1 yıla kadar</strong>.</li>
+    <li>1 yıl sonra kayıt tamamen silinir.</li>
+    <li>IP adresi en fazla <strong>7 gün</strong> tutulur; sonra yalnızca "aynı ağ / farklı ağ"
+      bilgisi kalır, adresin kendisi silinir.</li>
+  </ul>
+  <p>
+    Taramanın neyi nasıl aradığı, raporun içeriği ve bu sistemin sınırları belgelerde açık
+    yazılıdır: <a href="https://github.com/abdulhamitakdag/hapiscanner">github.com/abdulhamitakdag/hapiscanner</a>.
+    Program ve sunucu tarafı tamamen açık kaynaktır (Apache-2.0).
+  </p>
+
+  <h2>Sorun mu çıktı?</h2>
+  <p>
+    Program açılmıyor, kod kabul edilmiyor ya da tarama yarıda kalıyorsa oyun içinden bir
+    yetkiliye ya da Discord sunucumuzdan destek kanalına yaz. Taramayı <em>reddetmek</em> de
+    bir seçenektir; bunun ne anlama geldiğini sana doğrulamayı isteyen yetkili açıklar.
+  </p>
+
+  <footer>
+    HapiCraft · HapiScanner açık kaynaktır, Apache-2.0 lisanslıdır.
+  </footer>
+
+</main>
+</body>
+</html>

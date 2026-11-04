@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:yerel="clr-namespace:HapiScanner.App">
+
+    <!-- Donusturucular ayri sozlukte: hem App hem de stil sozlugu bunlari
+         StaticResource ile gorebilsin diye. -->
+
+    <yerel:EkranGorunurlugu x:Key="EkranGorunurlugu" />
+    <yerel:EkranlardanBiri x:Key="EkranlardanBiri" />
+    <yerel:DoluysaGorunur x:Key="DoluysaGorunur" />
+    <yerel:TersBool x:Key="TersBool" />
+    <yerel:YuzdeSutunu x:Key="YuzdeSutunu" />
+    <yerel:AsamaRengi x:Key="AsamaRengi" />
+    <yerel:TonRengi x:Key="TonRengi" />
+    <yerel:TonIkonu x:Key="TonIkonu" />
+    <yerel:SifirsaGorunur x:Key="SifirsaGorunur" />
+    <yerel:AdimRengi x:Key="AdimRengi" />
+    <BooleanToVisibilityConverter x:Key="BoolGorunurluk" />
+
+</ResourceDictionary>

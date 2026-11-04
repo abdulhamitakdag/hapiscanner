@@ -1,0 +1,228 @@
+{
+  "_not": "HapiCraft baslangic kural paketi. Hash gostergeleri bilerek BOS: hash ancak elde gercek bir ornek varken eklenir, uydurma hash yanlis guven verir. Bu paketteki kurallar paket adi ve manifest isaretlerine dayanir ve min_indicators degerleri tek bir zayif gostergenin isaretleme uretmesini engelleyecek sekilde secildi.",
+  "ruleset_version": "2026.11.03.1",
+  "rules": [
+    {
+      "rule_id": "HC_CLIENT_0001",
+      "name": "Wurst",
+      "category": "KNOWN_CLIENT",
+      "severity": "HIGH",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "PACKAGE_NAME",
+          "values": [
+            "net.wurstclient",
+            "net.wurstclient.hacks"
+          ]
+        },
+        {
+          "type": "MANIFEST_MARKER",
+          "key": "Implementation-Title",
+          "values": [
+            "Wurst",
+            "Wurst Client"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "HC_CLIENT_0002",
+      "name": "Meteor",
+      "category": "KNOWN_CLIENT",
+      "severity": "HIGH",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "PACKAGE_NAME",
+          "values": [
+            "meteordevelopment.meteorclient",
+            "meteordevelopment.meteorclient.systems"
+          ]
+        },
+        {
+          "type": "MANIFEST_MARKER",
+          "key": "Implementation-Title",
+          "values": [
+            "Meteor Client"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "HC_CLIENT_0003",
+      "name": "Impact",
+      "category": "KNOWN_CLIENT",
+      "severity": "HIGH",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "PACKAGE_NAME",
+          "values": [
+            "com.github.lunatrius.core",
+            "club.minnced.impact"
+          ]
+        },
+        {
+          "type": "MANIFEST_MARKER",
+          "key": "Implementation-Title",
+          "values": [
+            "Impact"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "HC_CLIENT_0004",
+      "name": "LiquidBounce",
+      "category": "KNOWN_CLIENT",
+      "severity": "HIGH",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "PACKAGE_NAME",
+          "values": [
+            "net.ccbluex.liquidbounce"
+          ]
+        },
+        {
+          "type": "MANIFEST_MARKER",
+          "key": "Implementation-Title",
+          "values": [
+            "LiquidBounce"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "HC_CLIENT_0005",
+      "name": "Aristois",
+      "category": "KNOWN_CLIENT",
+      "severity": "HIGH",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "PACKAGE_NAME",
+          "values": [
+            "me.yagni.aristois",
+            "de.aristois"
+          ]
+        },
+        {
+          "type": "MANIFEST_MARKER",
+          "key": "Implementation-Title",
+          "values": [
+            "Aristois"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "HC_MOD_0010",
+      "name": "X-Ray kaynak modu",
+      "category": "XRAY",
+      "severity": "MEDIUM",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "PACKAGE_NAME",
+          "values": [
+            "com.xray",
+            "net.xray",
+            "com.cheatbreaker.xray"
+          ]
+        },
+        {
+          "type": "MANIFEST_MARKER",
+          "key": "Implementation-Title",
+          "values": [
+            "XRay",
+            "X-Ray"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "HC_RUNTIME_0020",
+      "name": "Oyun process'ine takilan java ajani",
+      "category": "INJECTION",
+      "severity": "MEDIUM",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "RUNTIME_ANOMALY",
+          "values": [
+            "JavaAjani",
+            "NativeAjan"
+          ]
+        },
+        {
+          "type": "JVM_AGENT",
+          "values": [
+            "injector",
+            "agent",
+            "attach"
+          ]
+        }
+      ]
+    },
+    {
+      "rule_id": "HC_HISTORY_0030",
+      "name": "Silinmis hile istemcisi izi",
+      "category": "KNOWN_CLIENT",
+      "severity": "MEDIUM",
+      "min_indicators": 2,
+      "indicators": [
+        {
+          "type": "USN_EVENT",
+          "values": [
+            "DELETE"
+          ]
+        },
+        {
+          "type": "FILENAME",
+          "values": [
+            "wurst",
+            "meteor-client",
+            "liquidbounce",
+            "aristois",
+            "impact"
+          ]
+        }
+      ]
+    }
+  ],
+  "allowlist": [
+    {
+      "type": "MOD_METADATA",
+      "values": [
+        "sodium",
+        "iris",
+        "lithium",
+        "phosphor",
+        "fabric-api",
+        "forge",
+        "optifine",
+        "journeymap",
+        "jei",
+        "rei",
+        "appleskin",
+        "modmenu",
+        "betterf3",
+        "lambdynamiclights",
+        "entityculling",
+        "ferritecore"
+      ]
+    },
+    {
+      "type": "PACKAGE_NAME",
+      "values": [
+        "net.fabricmc.api",
+        "net.minecraftforge.fml",
+        "org.quiltmc",
+        "me.jellysquid.mods.sodium",
+        "net.irisshaders"
+      ]
+    }
+  ]
+}
