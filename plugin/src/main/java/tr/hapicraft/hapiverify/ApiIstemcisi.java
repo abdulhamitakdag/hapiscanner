@@ -52,6 +52,7 @@ public final class ApiIstemcisi implements OturumYuzeyi {
 
     private static Function<HttpRequest, HttpResponse<String>> varsayilanGonderici(Duration zamanAsimi) {
         HttpClient istemci = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
                 .connectTimeout(zamanAsimi)
                 .followRedirects(HttpClient.Redirect.NEVER)
                 .build();
