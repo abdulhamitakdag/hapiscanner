@@ -27,17 +27,17 @@ public static class AkisKurucu
         uyari = null;
 
         var dizin = AppContext.BaseDirectory;
-        var paketKaynagi = new DosyaKuralPaketiKaynagi(dizin);
-        if (!paketKaynagi.VarMi)
+        var paketKaynagi = KuralPaketiKaynaklari.Bul(dizin);
+        if (paketKaynagi is null)
         {
             uyari = "Kural paketi bulunamadı, tarama başlatılamaz.";
-            return new HazirDegilAkisi();
+            return new HazirDegilAkisi(uyari);
         }
 
         if (!Uri.TryCreate(SunucuAdresi(argumanlar), UriKind.Absolute, out var adres))
         {
             uyari = "Sunucu adresi geçersiz.";
-            return new HazirDegilAkisi();
+            return new HazirDegilAkisi(uyari);
         }
 
         var http = new HttpClient
@@ -83,7 +83,7 @@ public static class AkisKurucu
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "HapiScanner");
 
-    private static string OkunanSurum(DosyaKuralPaketiKaynagi kaynak)
+    private static string OkunanSurum(IKuralPaketiKaynagi kaynak)
     {
         try
         {

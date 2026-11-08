@@ -8,7 +8,7 @@ public sealed class TanitimAkisi : ITaramaAkisi
 {
     private static readonly (Asama Asama, int Sure, string[] Notlar)[] Senaryo =
     {
-        (Asama.Hazirlik, 600, new[] { "scanner sürümü 0.1.5", "cihaz anahtarı hazır" }),
+        (Asama.Hazirlik, 600, new[] { "scanner sürümü 0.1.6", "cihaz anahtarı hazır" }),
         (Asama.KuralPaketi, 900, new[] { "kural paketi imzası doğrulandı", "sürüm 2026.11.03.1" }),
         (Asama.Baglanti, 1100, new[] { "Minecraft process'i bulundu", "HapiCraft bağlantısı doğrulandı" }),
         (Asama.DosyaSistemi, 2600, new[]
@@ -50,12 +50,15 @@ public sealed class TanitimAkisi : ITaramaAkisi
 public sealed class HazirDegilAkisi : ITaramaAkisi
 {
     public const string Mesaj =
-        "Bu surumde gercek tarama henuz etkin degil. Arayuzu incelemek icin " +
-        "uygulamayi --tanitim argumaniyla baslat.";
+        "Tarama baslatilamadi. Scanner'in guncel surumunu yeniden indir.";
+
+    private readonly string _mesaj;
+
+    public HazirDegilAkisi(string? mesaj = null) => _mesaj = mesaj ?? Mesaj;
 
     public Task<AkisSonucu> CalistirAsync(
         string token, IAsamaBildirici bildirici, CancellationToken iptal)
         => Task.FromResult(new AkisSonucu(
             Sonuc.TaramaBasarisiz, "UNAVAILABLE", "UNAVAILABLE",
-            Array.Empty<KanitIstegi>(), Mesaj));
+            Array.Empty<KanitIstegi>(), _mesaj));
 }

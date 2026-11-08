@@ -25,6 +25,10 @@
                            Text="Önce ne topladığımızı, ne toplamadığımızı göstereceğiz." />
             </StackPanel>
 
+            <TextBlock Style="{StaticResource Kucuk}" Margin="2,14,0,0" TextWrapping="Wrap"
+                       Foreground="{StaticResource Kotu}" Text="{Binding KurulumUyarisi}"
+                       Visibility="{Binding KurulumUyarisi, Converter={StaticResource DoluysaGorunur}}" />
+
             <Button Style="{StaticResource ButonBirincil}" HorizontalAlignment="Left"
                     Margin="0,30,0,0" Click="Basla"
                     Content="{x:Static arayuz:Metinler.KarsilamaButon}" />

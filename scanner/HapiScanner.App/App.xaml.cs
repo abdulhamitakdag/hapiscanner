@@ -28,7 +28,7 @@ public partial class Uygulama : Application
             : AkisKurucu.Kur(e.Args, out uyari);
 
         KurulumUyarisi = uyari;
-        Yonetici = new AkisYoneticisi(akis, SynchronizationContext.Current);
+        Yonetici = new AkisYoneticisi(akis, SynchronizationContext.Current, uyari);
 
         DispatcherUnhandledException += BeklenmedikHata;
     }

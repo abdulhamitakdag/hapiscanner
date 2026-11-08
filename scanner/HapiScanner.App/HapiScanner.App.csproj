@@ -8,7 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>HapiScanner.App</RootNamespace>
     <AssemblyName>HapiScanner</AssemblyName>
-    <Version>0.1.5</Version>
+    <Version>0.1.6</Version>
     <Product>HapiScanner</Product>
     <Company>HapiCraft</Company>
     <UseWindowsForms>false</UseWindowsForms>

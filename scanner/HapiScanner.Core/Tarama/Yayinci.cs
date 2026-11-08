@@ -39,3 +39,38 @@ public sealed class DosyaKuralPaketiKaynagi : IKuralPaketiKaynagi
         return (paket, imza);
     }
 }
+
+public sealed class GomuluKuralPaketiKaynagi : IKuralPaketiKaynagi
+{
+    public bool VarMi => Oku(Yayinci.PaketDosyasi) is not null
+                      && Oku(Yayinci.ImzaDosyasi) is not null;
+
+    public Task<(string Paket, string? ImzaBase64)> GetirAsync(CancellationToken iptal)
+    {
+        var paket = Oku(Yayinci.PaketDosyasi)
+            ?? throw new FileNotFoundException(
+                "Kural paketi bulunamadı. Scanner'ı yeniden indir.", Yayinci.PaketDosyasi);
+        var imza = Oku(Yayinci.ImzaDosyasi)?.Trim();
+        return Task.FromResult((paket, imza));
+    }
+
+    private static string? Oku(string ad)
+    {
+        using var akis = typeof(Yayinci).Assembly.GetManifestResourceStream(ad);
+        if (akis is null) return null;
+        using var okuyucu = new StreamReader(akis);
+        return okuyucu.ReadToEnd();
+    }
+}
+
+public static class KuralPaketiKaynaklari
+{
+    public static IKuralPaketiKaynagi? Bul(string dizin)
+    {
+        var dosya = new DosyaKuralPaketiKaynagi(dizin);
+        if (dosya.VarMi) return dosya;
+
+        var gomulu = new GomuluKuralPaketiKaynagi();
+        return gomulu.VarMi ? gomulu : null;
+    }
+}

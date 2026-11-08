@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\rules\hapicraft-kurallar.json"
+                      LogicalName="hapicraft-kurallar.json" />
+    <EmbeddedResource Include="..\..\rules\hapicraft-kurallar.json.sig"
+                      LogicalName="hapicraft-kurallar.json.sig" />
+  </ItemGroup>
+
 </Project>

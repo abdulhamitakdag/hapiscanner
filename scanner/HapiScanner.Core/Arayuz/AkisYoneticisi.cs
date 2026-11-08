@@ -74,10 +74,14 @@ public sealed class AkisYoneticisi : INotifyPropertyChanged, IAsamaBildirici
     private string? _hataMesaji;
     private bool _mesgul;
 
-    public AkisYoneticisi(ITaramaAkisi akis, SynchronizationContext? baglam = null)
+    public AkisYoneticisi(
+        ITaramaAkisi akis,
+        SynchronizationContext? baglam = null,
+        string? kurulumUyarisi = null)
     {
         _akis = akis;
         _baglam = baglam;
+        KurulumUyarisi = kurulumUyarisi;
         Asamalar = new ObservableCollection<AsamaSatiri>(
             Asama.Tumu.Select(a => new AsamaSatiri(a)));
         Gunluk = new ObservableCollection<string>();
@@ -85,6 +89,8 @@ public sealed class AkisYoneticisi : INotifyPropertyChanged, IAsamaBildirici
 
     public ObservableCollection<AsamaSatiri> Asamalar { get; }
     public ObservableCollection<string> Gunluk { get; }
+
+    public string? KurulumUyarisi { get; }
 
     public Ekran AktifEkran
     {

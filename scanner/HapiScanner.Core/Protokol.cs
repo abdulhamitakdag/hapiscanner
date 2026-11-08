@@ -4,7 +4,7 @@ namespace HapiScanner.Core;
 
 public static class ScannerBilgisi
 {
-    public const string Surum = "0.1.5";
+    public const string Surum = "0.1.6";
 }
 
 public sealed record ClaimIstegi(
