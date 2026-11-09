@@ -18,6 +18,27 @@ public partial class KodEkrani : UserControl
         };
     }
 
+    private bool _bicimleniyor;
+
+    private void KodDegisti(object gonderen, TextChangedEventArgs e)
+    {
+        if (_bicimleniyor || gonderen is not TextBox kutu) return;
+
+        var bicimli = HapiScanner.Core.Token.Bicimle(kutu.Text);
+        if (bicimli == kutu.Text) return;
+
+        _bicimleniyor = true;
+        try
+        {
+            kutu.Text = bicimli;
+            kutu.CaretIndex = bicimli.Length;
+        }
+        finally
+        {
+            _bicimleniyor = false;
+        }
+    }
+
     private async void Baglan(object gonderen, RoutedEventArgs e)
         => await Yonetici.BaglanVeTaraAsync();
 

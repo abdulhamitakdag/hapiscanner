@@ -80,8 +80,12 @@ public final class Mesajlar {
     }
 
     public static Component oyuncuyaKod(String kod, String indirmeAdresi, long dakika) {
+        String temizKod = temiz(kod);
         return mesaj("<gray>Bir yetkili PC doğrulaması istedi.\n"
-                + "<gray>Kodun: <green><bold>" + temiz(kod) + "</bold></green>\n"
+                + "<gray>Kodun: <hover:show_text:'<gray>Tıkla, kod panoya kopyalanır'>"
+                + "<click:copy_to_clipboard:'" + temizKod + "'>"
+                + "<green><bold>" + temizKod + "</bold></green></click></hover> "
+                + "<dark_gray>(tıkla, kopyala)\n"
                 + "<gray>İndir: <white><click:open_url:'" + temiz(indirmeAdresi) + "'>"
                 + temiz(indirmeAdresi) + "</click></white>\n"
                 + "<dark_gray>Kod " + dakika + " dakika geçerli. Tarama senin onayınla başlar.");

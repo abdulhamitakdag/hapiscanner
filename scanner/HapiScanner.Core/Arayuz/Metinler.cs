@@ -76,8 +76,8 @@ public static class Metinler
     public const string KodBaslik = "Doğrulama kodunu gir";
 
     public const string KodAciklama =
-        "Oyun içinde yetkilinin verdiği kodu yaz. Kod HAPI-XXXX-XXXX biçimindedir " +
-        "ve kısa süre geçerlidir.";
+        "Oyun içinde sohbetteki koda tıklayıp kopyala, buraya yapıştır. HAPI- " +
+        "öneki ve tireler kendiliğinden yazılır, kod kısa süre geçerlidir.";
 
     public const string KodGecersiz = "Kod biçimi hatalı. Örnek: HAPI-K7QD-3MWA";
     public const string KodIpucu = "HAPI-XXXX-XXXX";

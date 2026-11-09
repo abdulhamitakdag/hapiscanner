@@ -20,7 +20,8 @@
 
             <TextBox x:Name="KodKutusuAlani" Style="{StaticResource KodKutusu}" Margin="0,22,0,0"
                      Text="{Binding Kod, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                     CharacterCasing="Upper" KeyDown="KodaBasildi" />
+                     CharacterCasing="Upper"
+                     KeyDown="KodaBasildi" TextChanged="KodDegisti" />
 
             <TextBlock Style="{StaticResource Kucuk}" Margin="2,8,0,0"
                        Text="{x:Static arayuz:Metinler.KodIpucu}" />

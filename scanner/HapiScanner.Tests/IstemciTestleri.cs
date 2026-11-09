@@ -53,6 +53,26 @@ public class TokenTestleri
     [InlineData("<script>alert(1)</script>")]
     public void GecersizTokenRed(string girdi) => Assert.False(Token.GecerliMi(girdi));
 
+    [Theory]
+    [InlineData("", "")]
+    [InlineData("k", "HAPI-K")]
+    [InlineData("K7F2", "HAPI-K7F2")]
+    [InlineData("K7F28", "HAPI-K7F2-8")]
+    [InlineData("k7f28qw9", "HAPI-K7F2-8QW9")]
+    [InlineData("HAPI-K7F2-8QW9", "HAPI-K7F2-8QW9")]
+    [InlineData("HAPIK7F28QW9", "HAPI-K7F2-8QW9")]
+    [InlineData("hapi k7f2 8qw9", "HAPI-K7F2-8QW9")]
+    [InlineData("K7F2-8QW9-EXTRA", "HAPI-K7F2-8QW9")]
+    [InlineData("HAPK7F28QW9", "HAPI-K7F2-8QW9")]
+    [InlineData("HAPI", "")]
+    [InlineData("---", "")]
+    public void KutudakiKodKendiniBicimler(string girdi, string beklenen)
+        => Assert.Equal(beklenen, Token.Bicimle(girdi));
+
+    [Fact]
+    public void BicimlenenKodGecerliSayilir()
+        => Assert.True(Token.GecerliMi(Token.Bicimle("k7f28qw9")));
+
     [Fact]
     public void NullCokmeyeYolAcmaz()
     {

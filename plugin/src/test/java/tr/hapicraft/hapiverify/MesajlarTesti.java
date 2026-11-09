@@ -35,6 +35,15 @@ class MesajlarTesti {
     }
 
     @Test
+    void kodaTiklayincaPanoyaKopyalanir() {
+        Component mesaj = Mesajlar.oyuncuyaKod("HAPI-K7QD-3MWA", "https://ornek/indir", 10);
+        String seri = net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
+                .gson().serialize(mesaj);
+        assertTrue(seri.contains("copy_to_clipboard"), seri);
+        assertTrue(seri.contains("HAPI-K7QD-3MWA"));
+    }
+
+    @Test
     void bosSonucTireGosterir() {
         assertTrue(duz(Mesajlar.durumSatiri("Ali", "PENDING", null)).contains("sonuç: -"));
     }
